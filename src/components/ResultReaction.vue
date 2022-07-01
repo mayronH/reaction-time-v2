@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useReactionStore } from '../stores/reaction'
 import app from '../firebase/firebaseInit'
 import Loading from './LoadingComponent.vue'
 import { getFirestore, addDoc, collection } from 'firebase/firestore'
@@ -14,8 +13,6 @@ const props = defineProps({
 })
 
 const loading = ref(false)
-
-const reactionStore = useReactionStore()
 
 async function uploadReaction() {
   loading.value = true

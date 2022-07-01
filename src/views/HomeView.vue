@@ -77,7 +77,7 @@ p {
   filter: grayscale(0.6);
 }
 .game {
-  min-height: 80vh;
+  min-height: 40vh;
   width: 90vw;
 
   display: grid;

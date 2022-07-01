@@ -68,7 +68,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body {
-  font-family: 'Poppins';
+  font-family: 'Inter';
   color: var(--white);
 
   background-color: var(--bg-dark);

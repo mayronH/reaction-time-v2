@@ -1,8 +1,103 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Loading from '../components/LoadingComponent.vue'
+import BarChart from '../components/BarChart.vue'
+import LineChart from '../components/LineChart.vue'
 
 const data = ref(true)
+
+const monthLabel = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
+const currentMonth = new Date().getMonth()
+const daysLabel = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+  '24',
+  '25',
+  '26',
+  '27',
+  '28',
+  '29',
+  '30',
+]
+
+const gamesPlayedPerDay = ref({
+  labels: daysLabel,
+  datasets: [
+    {
+      label: `Games played per day in ${currentMonth}`,
+      borderColor: '#e53265',
+      data: [40, 20, 12],
+    },
+  ],
+})
+
+const scoresPerDay = ref({
+  labels: daysLabel,
+  datasets: [
+    {
+      label: `Average Reaction Time per day in ${currentMonth}`,
+      borderColor: '#e53265',
+      data: [40, 20, 12],
+    },
+  ],
+})
+
+const gamesPlayed = ref({
+  labels: monthLabel,
+  datasets: [
+    {
+      label: 'Games Played per month',
+      backgroundColor: '#e53265',
+      data: [40, 20, 12],
+    },
+  ],
+})
+
+const allTimeScore = ref({
+  labels: monthLabel,
+  datasets: [
+    {
+      label: 'Average Reaction Time per month',
+      backgroundColor: '#e53265',
+      data: [40, 20, 12],
+    },
+  ],
+})
 </script>
 <template>
   <Loading v-show="false" />
@@ -28,13 +123,21 @@ const data = ref(true)
 
     <section class="graphs">
       <div class="month">
-        <div class="scores"></div>
-        <div class="games-played"></div>
+        <div class="scores">
+          <LineChart />
+        </div>
+        <div class="games-played">
+          <LineChart />
+        </div>
       </div>
 
       <div class="all-time">
-        <div class="scores"></div>
-        <div class="games-played"></div>
+        <div class="scores">
+          <BarChart />
+        </div>
+        <div class="games-played">
+          <BarChart />
+        </div>
       </div>
     </section>
   </main>
@@ -108,6 +211,11 @@ const data = ref(true)
   margin-block: var(--medium-size-fluid);
 }
 
+.graphs > div {
+  display: flex;
+  flex-direction: column;
+}
+
 .indicators > div {
   flex: 1;
   display: flex;
@@ -154,5 +262,12 @@ const data = ref(true)
 }
 .empty svg {
   color: var(--text-grey);
+}
+
+@media (min-width: 768px) {
+  .graphs > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Loading from '../components/LoadingComponent.vue'
-import BarChart from '../components/BarChart.vue'
-import LineChart from '../components/LineChart.vue'
+import ChartBar from '../components/ChartBar.vue'
+import ChartLine from '../components/ChartLine.vue'
 
 const data = ref(true)
 
@@ -21,7 +21,8 @@ const monthLabel = [
   'December',
 ]
 
-const currentMonth = new Date().getMonth()
+const currentMonth = new Date().toLocaleString('en-US', { month: 'long' })
+
 const daysLabel = [
   '1',
   '2',
@@ -61,6 +62,7 @@ const gamesPlayedPerDay = ref({
     {
       label: `Games played per day in ${currentMonth}`,
       borderColor: '#e53265',
+      backgroundColor: '#e53265',
       data: [40, 20, 12],
     },
   ],
@@ -72,6 +74,7 @@ const scoresPerDay = ref({
     {
       label: `Average Reaction Time per day in ${currentMonth}`,
       borderColor: '#e53265',
+      backgroundColor: '#e53265',
       data: [40, 20, 12],
     },
   ],
@@ -124,19 +127,27 @@ const allTimeScore = ref({
     <section class="graphs">
       <div class="month">
         <div class="scores">
-          <LineChart />
+          <h2>Average Reaction Time per day in {{ currentMonth }}</h2>
+          <ChartLine :width="100" :height="50" :chart-data="scoresPerDay" />
         </div>
         <div class="games-played">
-          <LineChart />
+          <h2>Games Played per day in {{ currentMonth }}</h2>
+          <ChartLine
+            :width="100"
+            :height="50"
+            :chart-data="gamesPlayedPerDay"
+          />
         </div>
       </div>
 
       <div class="all-time">
         <div class="scores">
-          <BarChart />
+          <h2>Average Reaction Time per month</h2>
+          <ChartBar :width="100" :height="50" :chart-data="allTimeScore" />
         </div>
         <div class="games-played">
-          <BarChart />
+          <h2>Games Played per month</h2>
+          <ChartBar :width="100" :height="50" :chart-data="gamesPlayed" />
         </div>
       </div>
     </section>
@@ -214,6 +225,9 @@ const allTimeScore = ref({
 .graphs > div {
   display: flex;
   flex-direction: column;
+  text-align: center;
+
+  margin-block: var(--small-size-fluid);
 }
 
 .indicators > div {

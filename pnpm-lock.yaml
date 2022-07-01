@@ -15,7 +15,7 @@ specifiers:
   vite: ^2.9.13
   vite-plugin-eslint: ^1.6.1
   vue: ^3.2.37
-  vue-chart-3: ^3.1.8
+  vue-chartjs: ^4.1.1
   vue-router: ^4.0.16
   vue-tsc: ^0.34.17
 
@@ -23,7 +23,7 @@ dependencies:
   chart.js: 3.8.0
   pinia: 2.0.14_j6bzmzd4ujpabbp5objtwxyjp4
   vue: 3.2.37
-  vue-chart-3: 3.1.8_chart.js@3.8.0+vue@3.2.37
+  vue-chartjs: 4.1.1_chart.js@3.8.0+vue@3.2.37
   vue-router: 4.0.16_vue@3.2.37
 
 devDependencies:
@@ -526,10 +526,6 @@ packages:
 
   /csstype/2.6.20:
     resolution: {integrity: sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==}
-
-  /csstype/3.1.0:
-    resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==}
-    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -1145,10 +1141,6 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /lodash-es/4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: false
-
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
@@ -1533,17 +1525,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vue-chart-3/3.1.8_chart.js@3.8.0+vue@3.2.37:
-    resolution: {integrity: sha512-zX5ajjQi/PocEqLETlej3vp92q/tnI/Fvu2RVb++Kap8qOrXu6PXCpodi73BFrWzEGZIAnqoUxC3OIkRWD657g==}
+  /vue-chartjs/4.1.1_chart.js@3.8.0+vue@3.2.37:
+    resolution: {integrity: sha512-rKIQ3jPrjhwxjKdNJppnYxRuBSrx4QeM3nNHsfIxEqjX6QS4Jq6e6vnZBxh2MDpURDC2uvuI2N0eIt1cWXbBVA==}
     peerDependencies:
-      chart.js: '=> ^3.1.0'
-      vue: '>= 3'
+      chart.js: ^3.7.0
+      vue: ^3.0.0-0 || ^2.6.0
     dependencies:
-      '@vue/runtime-core': 3.2.37
-      '@vue/runtime-dom': 3.2.37
       chart.js: 3.8.0
-      csstype: 3.1.0
-      lodash-es: 4.17.21
       vue: 3.2.37
     dev: false
 

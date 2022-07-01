@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useReactionStore } from '../stores/reaction'
 import Loading from '../components/LoadingComponent.vue'
 import ChartBar from '../components/ChartBar.vue'
 import ChartLine from '../components/ChartLine.vue'
 
-const data = ref(true)
+const currentDate = new Date()
+const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' })
 
 const monthLabel = [
   'January',
@@ -20,8 +22,6 @@ const monthLabel = [
   'November',
   'December',
 ]
-
-const currentMonth = new Date().toLocaleString('en-US', { month: 'long' })
 
 const daysLabel = [
   '1',
@@ -101,26 +101,67 @@ const allTimeScore = ref({
     },
   ],
 })
+
+const reactionStore = useReactionStore()
+
+const bestScore = ref(0)
+const averageToday = ref(0)
+const averageMonth = ref(0)
+const total = ref(0)
+
+function createIndicators() {
+  let sumTotalMonth = 0
+  let sumTotalDay = 0
+  let counterDay = 0
+
+  reactionStore.reactionData.forEach((reaction) => {
+    const date = new Date(reaction.date)
+    if (date.getMonth() == currentDate.getMonth())
+      sumTotalMonth += reaction.score
+    if (
+      date.getMonth() == currentDate.getMonth() &&
+      date.getDay() == currentDate.getDay()
+    ) {
+      counterDay += 1
+      sumTotalDay += reaction.score
+    }
+  })
+
+  bestScore.value = reactionStore.reactionData.sort(function (a, b) {
+    return a.score - b.score
+  })[0].score
+
+  averageMonth.value = sumTotalMonth / reactionStore.reactionData.length
+
+  if (counterDay > 0) averageToday.value = sumTotalDay / counterDay
+
+  total.value = reactionStore.reactionData.length
+}
+
+onMounted(async () => {
+  await reactionStore.getReactions()
+  createIndicators()
+})
 </script>
 <template>
-  <Loading v-show="false" />
-  <main v-if="data" class="content">
+  <Loading v-show="!reactionStore.reactionsLoaded" />
+  <main v-if="reactionStore.reactionData.length > 0" class="content">
     <section class="indicators">
       <div class="best-score">
         <div class="info">Best Score:</div>
-        <div class="data">200ms</div>
+        <div class="data">{{ bestScore }}ms</div>
       </div>
       <div class="average-day">
         <div class="info">Average today:</div>
-        <div class="data">300ms</div>
+        <div class="data">{{ averageToday }}ms</div>
       </div>
       <div class="average-month">
         <div class="info">Average month:</div>
-        <div class="data">240ms</div>
+        <div class="data">{{ averageMonth }}ms</div>
       </div>
       <div class="total-games">
         <div class="info">Total tests:</div>
-        <div class="data">40</div>
+        <div class="data">{{ total }}</div>
       </div>
     </section>
 
@@ -152,6 +193,7 @@ const allTimeScore = ref({
       </div>
     </section>
   </main>
+
   <main v-else class="empty">
     <svg
       width="100px"

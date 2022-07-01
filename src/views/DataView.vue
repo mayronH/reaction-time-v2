@@ -23,81 +23,47 @@ const monthLabel = [
   'December',
 ]
 
-const daysLabel = [
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '23',
-  '24',
-  '25',
-  '26',
-  '27',
-  '28',
-  '29',
-  '30',
-]
-
-const gamesPlayedPerDay = ref({
-  labels: daysLabel,
-  datasets: [
-    {
-      label: `Games played per day in ${currentMonth}`,
-      borderColor: '#e53265',
-      backgroundColor: '#e53265',
-      data: [40, 20, 12],
-    },
-  ],
-})
-
 const scoresPerDay = ref({
-  labels: daysLabel,
+  labels: [''],
   datasets: [
     {
-      label: `Average Reaction Time per day in ${currentMonth}`,
-      borderColor: '#e53265',
-      backgroundColor: '#e53265',
-      data: [40, 20, 12],
+      label: '',
+      borderColor: '',
+      backgroundColor: '',
+      data: [0],
     },
   ],
 })
-
-const gamesPlayed = ref({
-  labels: monthLabel,
+const gamesPlayedPerDay = ref({
+  labels: [''],
   datasets: [
     {
-      label: 'Games Played per month',
-      backgroundColor: '#e53265',
-      data: [40, 20, 12],
+      label: '',
+      borderColor: '',
+      backgroundColor: '',
+      data: [0],
     },
   ],
 })
 
 const allTimeScore = ref({
-  labels: monthLabel,
+  labels: [''],
   datasets: [
     {
-      label: 'Average Reaction Time per month',
-      backgroundColor: '#e53265',
-      data: [40, 20, 12],
+      label: '',
+      backgroundColor: '',
+      data: [0],
+    },
+  ],
+})
+
+const gamesPlayed = ref({
+  labels: [''],
+  datasets: [
+    {
+      label: '',
+      backgroundColor: '',
+      data: [0],
     },
   ],
 })
@@ -116,11 +82,15 @@ function createIndicators() {
 
   reactionStore.reactionData.forEach((reaction) => {
     const date = new Date(reaction.date)
-    if (date.getMonth() == currentDate.getMonth())
+    if (
+      date.getMonth() == currentDate.getMonth() &&
+      date.getFullYear() == currentDate.getFullYear()
+    )
       sumTotalMonth += reaction.score
     if (
       date.getMonth() == currentDate.getMonth() &&
-      date.getDay() == currentDate.getDay()
+      date.getDate() == currentDate.getDate() &&
+      date.getFullYear() == currentDate.getFullYear()
     ) {
       counterDay += 1
       sumTotalDay += reaction.score
@@ -131,18 +101,140 @@ function createIndicators() {
     return a.score - b.score
   })[0].score
 
-  averageMonth.value = sumTotalMonth / reactionStore.reactionData.length
+  averageMonth.value = parseFloat(
+    (sumTotalMonth / reactionStore.reactionData.length).toFixed(2)
+  )
 
-  if (counterDay > 0) averageToday.value = sumTotalDay / counterDay
+  if (counterDay > 0)
+    averageToday.value = parseFloat((sumTotalDay / counterDay).toFixed(2))
 
   total.value = reactionStore.reactionData.length
+}
+
+function createGraph() {
+  const daysLabel = [] as Array<string>
+  const dataScoresPerDay = [] as Array<number>
+  const dataGamesPlayedPerDay = [] as Array<number>
+  const dataScoresPerMonth = [] as Array<number>
+  const dataGamesPlayedPerMonth = [] as Array<number>
+
+  const totalDays = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  ).getDate()
+
+  for (let i = 1; i <= totalDays; i++) {
+    daysLabel.push(`${i}`)
+  }
+
+  reactionStore.reactionData.forEach((reaction) => {
+    const date = new Date(reaction.date)
+
+    if (date.getFullYear() == currentDate.getFullYear()) {
+      if (dataGamesPlayedPerDay[date.getDate()]) {
+        dataGamesPlayedPerDay[date.getDate()] += 1
+      } else {
+        dataGamesPlayedPerDay[date.getDate()] = 1
+      }
+
+      if (dataScoresPerDay[date.getDate()]) {
+        dataScoresPerDay[date.getDate()] += reaction.score
+      } else {
+        dataScoresPerDay[date.getDate()] = reaction.score
+      }
+
+      if (dataGamesPlayedPerMonth[date.getMonth() + 1]) {
+        dataGamesPlayedPerMonth[date.getMonth() + 1] += 1
+      } else {
+        dataGamesPlayedPerMonth[date.getMonth() + 1] = 1
+      }
+
+      if (dataScoresPerMonth[date.getMonth() + 1]) {
+        dataScoresPerMonth[date.getMonth() + 1] += reaction.score
+      } else {
+        dataScoresPerMonth[date.getMonth() + 1] = reaction.score
+      }
+    }
+  })
+
+  for (let i = 0; i < dataGamesPlayedPerMonth.length; i++) {
+    if (!dataGamesPlayedPerMonth[i]) dataGamesPlayedPerMonth[i] = 0
+    if (!dataScoresPerMonth[i]) dataScoresPerMonth[i] = 0
+
+    if (dataScoresPerMonth[i] > 0 && dataGamesPlayedPerMonth[i] > 0) {
+      dataScoresPerMonth[i] = dataScoresPerMonth[i] / dataGamesPlayedPerMonth[i]
+    }
+  }
+
+  for (let i = 0; i < dataGamesPlayedPerDay.length; i++) {
+    if (!dataGamesPlayedPerDay[i]) dataGamesPlayedPerDay[i] = 0
+    if (!dataScoresPerDay[i]) dataScoresPerDay[i] = 0
+
+    if (dataScoresPerDay[i] > 0 && dataGamesPlayedPerDay[i] > 0) {
+      dataScoresPerDay[i] = dataScoresPerDay[i] / dataGamesPlayedPerDay[i]
+    }
+  }
+
+  dataGamesPlayedPerDay.shift()
+  dataScoresPerDay.shift()
+  dataGamesPlayedPerMonth.shift()
+  dataScoresPerMonth.shift()
+
+  scoresPerDay.value = {
+    labels: daysLabel,
+    datasets: [
+      {
+        label: `Average Reaction Time per day in ${currentMonth}`,
+        borderColor: '#e53265',
+        backgroundColor: '#e53265',
+        data: dataScoresPerDay,
+      },
+    ],
+  }
+
+  gamesPlayedPerDay.value = {
+    labels: daysLabel,
+    datasets: [
+      {
+        label: `Games played per day in ${currentMonth}`,
+        borderColor: '#e53265',
+        backgroundColor: '#e53265',
+        data: dataGamesPlayedPerDay,
+      },
+    ],
+  }
+
+  allTimeScore.value = {
+    labels: monthLabel,
+    datasets: [
+      {
+        label: 'Average Reaction Time per month',
+        backgroundColor: '#e53265',
+        data: dataScoresPerMonth,
+      },
+    ],
+  }
+
+  gamesPlayed.value = {
+    labels: monthLabel,
+    datasets: [
+      {
+        label: 'Games Played per month',
+        backgroundColor: '#e53265',
+        data: dataGamesPlayedPerMonth,
+      },
+    ],
+  }
 }
 
 onMounted(async () => {
   await reactionStore.getReactions()
   createIndicators()
+  createGraph()
 })
 </script>
+
 <template>
   <Loading v-show="!reactionStore.reactionsLoaded" />
   <main v-if="reactionStore.reactionData.length > 0" class="content">

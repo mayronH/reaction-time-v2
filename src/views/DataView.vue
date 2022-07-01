@@ -78,21 +78,24 @@ const total = ref(0)
 function createIndicators() {
   let sumTotalMonth = 0
   let sumTotalDay = 0
-  let counterDay = 0
+  let countDay = 0
+  let countMonth = 0
 
   reactionStore.reactionData.forEach((reaction) => {
     const date = new Date(reaction.date)
     if (
       date.getMonth() == currentDate.getMonth() &&
       date.getFullYear() == currentDate.getFullYear()
-    )
+    ) {
       sumTotalMonth += reaction.score
+      countMonth += 1
+    }
     if (
       date.getMonth() == currentDate.getMonth() &&
       date.getDate() == currentDate.getDate() &&
       date.getFullYear() == currentDate.getFullYear()
     ) {
-      counterDay += 1
+      countDay += 1
       sumTotalDay += reaction.score
     }
   })
@@ -101,12 +104,10 @@ function createIndicators() {
     return a.score - b.score
   })[0].score
 
-  averageMonth.value = parseFloat(
-    (sumTotalMonth / reactionStore.reactionData.length).toFixed(2)
-  )
+  averageMonth.value = parseFloat((sumTotalMonth / countMonth).toFixed(2))
 
-  if (counterDay > 0)
-    averageToday.value = parseFloat((sumTotalDay / counterDay).toFixed(2))
+  if (countDay > 0)
+    averageToday.value = parseFloat((sumTotalDay / countDay).toFixed(2))
 
   total.value = reactionStore.reactionData.length
 }
@@ -132,16 +133,18 @@ function createGraph() {
     const date = new Date(reaction.date)
 
     if (date.getFullYear() == currentDate.getFullYear()) {
-      if (dataGamesPlayedPerDay[date.getDate()]) {
-        dataGamesPlayedPerDay[date.getDate()] += 1
-      } else {
-        dataGamesPlayedPerDay[date.getDate()] = 1
-      }
+      if (date.getMonth() == currentDate.getMonth()) {
+        if (dataGamesPlayedPerDay[date.getDate()]) {
+          dataGamesPlayedPerDay[date.getDate()] += 1
+        } else {
+          dataGamesPlayedPerDay[date.getDate()] = 1
+        }
 
-      if (dataScoresPerDay[date.getDate()]) {
-        dataScoresPerDay[date.getDate()] += reaction.score
-      } else {
-        dataScoresPerDay[date.getDate()] = reaction.score
+        if (dataScoresPerDay[date.getDate()]) {
+          dataScoresPerDay[date.getDate()] += reaction.score
+        } else {
+          dataScoresPerDay[date.getDate()] = reaction.score
+        }
       }
 
       if (dataGamesPlayedPerMonth[date.getMonth() + 1]) {

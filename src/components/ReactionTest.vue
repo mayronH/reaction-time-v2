@@ -26,11 +26,11 @@ onMounted(() => {
 })
 
 function startTimer() {
-  startTime.value = Date.now()
+  startTime.value = performance.now()
 }
 
 function stopTimer() {
-  reactionTime.value = Date.now()
+  reactionTime.value = performance.now()
   reactionTime.value = reactionTime.value - startTime.value
   score.value += reactionTime.value
 
@@ -50,7 +50,7 @@ watch(
   () => counter.value,
   () => {
     if (counter.value == 5) {
-      endGame(score.value / 5)
+      endGame(parseFloat((score.value / 5).toFixed(2)))
     }
   }
 )

@@ -1,4 +1,4 @@
-# Invoice App with Vue + Firebase
+# Reaction Time Test with Vue + Firebase
 
 ![Screenshot Home](home.png)
 

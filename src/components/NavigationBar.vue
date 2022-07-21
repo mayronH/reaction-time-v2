@@ -1,9 +1,20 @@
 <script setup lang="ts">
+import { Auth, getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 import { onMounted, ref } from 'vue'
 
 const navBtn = ref()
 
+const isLoggedIn = ref(false)
+
+let auth: Auth
 onMounted(() => {
+  auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    isLoggedIn.value = false
+    if (user) {
+      isLoggedIn.value = true
+    }
+  })
   if (navBtn.value) {
     navBtn.value.addEventListener('click', () => {
       const isExpanded = navBtn.value.getAttribute('aria-expanded')
@@ -16,6 +27,10 @@ onMounted(() => {
     })
   }
 })
+
+function handleLogout() {
+  signOut(auth)
+}
 </script>
 <template>
   <header>
@@ -74,6 +89,16 @@ onMounted(() => {
           <li role="none">
             <router-link to="/dashboard" role="menuitem" class="nav-link"
               >Your Data</router-link
+            >
+          </li>
+          <li v-if="isLoggedIn" role="none">
+            <a href="#" role="menuitem" class="nav-link" @click="handleLogout"
+              >Logout</a
+            >
+          </li>
+          <li v-else role="none">
+            <router-link to="/login" role="menuitem" class="nav-link"
+              >Login</router-link
             >
           </li>
         </ul>

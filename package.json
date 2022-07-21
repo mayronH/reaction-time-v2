@@ -10,25 +10,25 @@
   },
   "dependencies": {
     "chart.js": "^3.8.0",
-    "firebase": "^9.8.4",
-    "pinia": "^2.0.14",
+    "firebase": "^9.9.0",
+    "pinia": "^2.0.16",
     "uuid": "^8.3.2",
     "vue": "^3.2.37",
     "vue-chartjs": "^4.1.1",
-    "vue-router": "^4.0.16"
+    "vue-router": "^4.1.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.30.0",
-    "@typescript-eslint/parser": "^5.30.0",
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "@vitejs/plugin-vue": "^3.0.1",
     "autoprefixer": "^10.4.7",
-    "eslint": "^8.18.0",
+    "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-vue": "^9.1.1",
+    "eslint-plugin-vue": "^9.2.0",
     "postcss": "^8.4.14",
     "typescript": "^4.7.4",
-    "vite": "^2.9.13",
-    "vite-plugin-eslint": "^1.6.1",
-    "vue-tsc": "^0.34.17"
+    "vite": "^3.0.2",
+    "vite-plugin-eslint": "^1.7.0",
+    "vue-tsc": "^0.38.9"
   }
 }

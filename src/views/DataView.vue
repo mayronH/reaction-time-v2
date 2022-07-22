@@ -246,7 +246,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Loading v-show="!reactionStore.reactionsLoaded" />
+  <Loading v-show="!reactionStore.reactionsLoaded && userStore.isLoggedIn" />
   <main v-if="reactionStore.reactionData.length > 0" class="content">
     <section class="indicators">
       <div class="best-score">

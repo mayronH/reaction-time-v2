@@ -4,6 +4,7 @@ import app from '../firebase/firebaseInit'
 import Loading from './LoadingComponent.vue'
 import { getFirestore, addDoc, collection } from 'firebase/firestore'
 import { v4 as uuidv4 } from 'uuid'
+import { useUserStore } from '../stores/auth'
 
 const props = defineProps({
   score: {
@@ -13,6 +14,7 @@ const props = defineProps({
 })
 
 const loading = ref(false)
+const userStore = useUserStore()
 
 async function uploadReaction() {
   loading.value = true
@@ -26,12 +28,15 @@ async function uploadReaction() {
       month: 'numeric',
       day: 'numeric',
     }),
+    user: userStore.user?.uid,
   })
   loading.value = false
 }
 
 onMounted(async () => {
-  await uploadReaction()
+  if (userStore.user) {
+    await uploadReaction()
+  }
 })
 </script>
 

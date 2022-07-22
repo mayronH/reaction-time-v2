@@ -16,6 +16,7 @@ const errorMessage = ref()
 
 const router = useRouter()
 
+// login with email and password
 async function login() {
   try {
     const response = await signInWithEmailAndPassword(
@@ -28,6 +29,7 @@ async function login() {
     }
   } catch (err) {
     const error = err as FirebaseError
+    // error code from firebase
     switch (error.code) {
       case 'auth/invalid-email':
         errorMessage.value = 'Invalid Email'
@@ -44,6 +46,7 @@ async function login() {
     }
   }
 }
+
 async function loginWithGit() {
   const provider = new GithubAuthProvider()
   signInWithPopup(getAuth(), provider)

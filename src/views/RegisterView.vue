@@ -11,6 +11,7 @@ const password = ref('')
 
 const router = useRouter()
 
+// register with email and password
 async function newAccount() {
   try {
     const response = await createUserWithEmailAndPassword(

@@ -45,3 +45,11 @@ pnpm dev
 ```bash
 pnpm build
 ```
+
+## Roadmap
+
+- [x] Add Graphs
+- [x] Add Authentication with Github
+- [ ] Add Light/Dark Theme Switch
+- [ ] Add tests with Vitest
+- [ ] PWA

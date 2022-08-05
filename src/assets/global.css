@@ -1,12 +1,21 @@
 @import url('https://api.fonts.coollabs.io/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
 
 :root {
-  --white: #f0f1f2;
-  --bg-dark: #11121d;
-  --bg-medium: #191a28;
-  --bg-lighter: #1e2130;
-  --text-grey: #979bb0;
-  --accent: #e53265;
+  /* Dark Mode Colors */
+  --dark-text: #f0f1f2;
+  --dark-bg-dark: #11121d;
+  --dark-bg-medium: #191a28;
+  --dark-bg-lighter: #1e2130;
+  --dark-text-grey: #979bb0;
+  --dark-accent: #e53265;
+
+  /* Light Mode Colors */
+  --light-text: #15181e;
+  --light-bg-dark: #ffffff;
+  --light-bg-medium: #f3f5f7;
+  --light-bg-lighter: #dbe0ec;
+  --light-text-grey: #7185a5;
+  --light-accent: #2293c7;
 
   --extra-small-size-fluid: clamp(0.5rem, 1vw, 0.75rem);
   --small-size-fluid: clamp(1rem, 2vw, 1.5rem);
@@ -17,6 +26,46 @@
   --border-radius: 8px;
 
   --box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: var(--dark-text);
+    --bg-dark: var(--dark-bg-dark);
+    --bg-medium: var(--dark-bg-medium);
+    --bg-lighter: var(--dark-bg-lighter);
+    --text-grey: var(--dark-text-grey);
+    --accent: var(--dark-accent);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: var(--light-text);
+    --bg-dark: var(--light-bg-dark);
+    --bg-medium: var(--light-bg-medium);
+    --bg-lighter: var(--light-bg-lighter);
+    --text-grey: var(--light-text-grey);
+    --accent: var(--light-accent);
+  }
+}
+
+[color-scheme='dark'] {
+  --text: var(--dark-text);
+  --bg-dark: var(--dark-bg-dark);
+  --bg-medium: var(--dark-bg-medium);
+  --bg-lighter: var(--dark-bg-lighter);
+  --text-grey: var(--dark-text-grey);
+  --accent: var(--dark-accent);
+}
+
+[color-scheme='light'] {
+  --text: var(--light-text);
+  --bg-dark: var(--light-bg-dark);
+  --bg-medium: var(--light-bg-medium);
+  --bg-lighter: var(--light-bg-lighter);
+  --text-grey: var(--light-text-grey);
+  --accent: var(--light-accent);
 }
 
 /* CSS Reset */
@@ -69,7 +118,7 @@ body::-webkit-scrollbar-thumb {
 
 body {
   font-family: 'Inter';
-  color: var(--white);
+  color: var(--text);
 
   background-color: var(--bg-dark);
 }

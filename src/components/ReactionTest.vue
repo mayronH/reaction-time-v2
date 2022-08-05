@@ -99,7 +99,7 @@ function endGame(averageScore: number) {
 
   width: 80vw;
 
-  color: var(--white);
+  color: var(--text);
   font-size: var(--medium-size-fluid);
   text-align: center;
 

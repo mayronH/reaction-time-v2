@@ -5,3 +5,5 @@ export interface ReactionData {
   date: string
   docId: string
 }
+
+export type Theme = 'light' | 'dark'

@@ -24,8 +24,8 @@ span {
   width: 60px;
   height: 60px;
   border: 3px solid transparent;
-  border-top-color: var(--white);
-  border-bottom-color: var(--white);
+  border-top-color: var(--text);
+  border-bottom-color: var(--text);
   border-radius: 50%;
   animation: spin ease 1s infinite;
 }

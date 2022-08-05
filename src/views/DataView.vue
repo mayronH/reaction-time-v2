@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useReactionStore } from '../stores/reaction'
 import Loading from '../components/LoadingComponent.vue'
 import ChartBar from '../components/ChartBar.vue'
 import ChartLine from '../components/ChartLine.vue'
 import { useUserStore } from '../stores/auth'
+import { useThemeStore } from '../stores/theme'
 
 const currentDate = new Date()
 const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' })
+
+const themeStore = useThemeStore()
 
 const monthLabel = [
   'January',
@@ -194,8 +197,8 @@ function createGraph() {
     datasets: [
       {
         label: `Average Reaction Time per day in ${currentMonth}`,
-        borderColor: '#e53265',
-        backgroundColor: '#e53265',
+        borderColor: themeStore.accentColor,
+        backgroundColor: themeStore.accentColor,
         data: dataScoresPerDay,
       },
     ],
@@ -206,8 +209,8 @@ function createGraph() {
     datasets: [
       {
         label: `Games played per day in ${currentMonth}`,
-        borderColor: '#e53265',
-        backgroundColor: '#e53265',
+        borderColor: themeStore.accentColor,
+        backgroundColor: themeStore.accentColor,
         data: dataGamesPlayedPerDay,
       },
     ],
@@ -218,7 +221,7 @@ function createGraph() {
     datasets: [
       {
         label: 'Average Reaction Time per month',
-        backgroundColor: '#e53265',
+        backgroundColor: themeStore.accentColor,
         data: dataScoresPerMonth,
       },
     ],
@@ -229,7 +232,7 @@ function createGraph() {
     datasets: [
       {
         label: 'Games Played per month',
-        backgroundColor: '#e53265',
+        backgroundColor: themeStore.accentColor,
         data: dataGamesPlayedPerMonth,
       },
     ],
@@ -243,6 +246,13 @@ onMounted(async () => {
     createGraph()
   }
 })
+
+watch(
+  () => themeStore.accentColor,
+  () => {
+    createGraph()
+  }
+)
 </script>
 
 <template>

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useUserStore } from '../stores/auth'
+import { useThemeStore } from '../stores/theme'
 
 const navBtn = ref()
 const userStore = useUserStore()
+const themeStore = useThemeStore()
 
 onMounted(() => {
+  themeStore.setBasedInPreferredMedia()
+
   // navbar burger script
   if (navBtn.value) {
     navBtn.value.addEventListener('click', () => {
@@ -79,6 +83,46 @@ onMounted(() => {
               >Your Data</router-link
             >
           </li>
+
+          <li role="none">
+            <button
+              role="switch"
+              class="theme-switch"
+              @click="themeStore.toggleTheme()"
+            >
+              <svg
+                v-if="themeStore.userTheme === 'dark'"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                />
+              </svg>
+            </button>
+          </li>
+
           <li v-if="userStore.isLoggedIn" role="none">
             <a
               href="#"
@@ -191,6 +235,26 @@ onMounted(() => {
 .nav-link {
   color: var(--text);
   text-decoration: none;
+}
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem;
+  background-color: var(--bg-lighter);
+
+  color: var(--text);
+
+  border: none;
+
+  border-radius: 50%;
+}
+
+.theme-switch svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 @media (min-width: 768px) {

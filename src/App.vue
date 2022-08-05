@@ -28,7 +28,7 @@ main.content {
   height: 100%;
 }
 .btn {
-  color: var(--white);
+  color: var(--text);
   font-weight: 700;
   font-size: var(--small-size-fluid);
 

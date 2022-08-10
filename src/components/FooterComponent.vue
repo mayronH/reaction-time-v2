@@ -8,8 +8,8 @@ const currentYear = ref(new Date().getFullYear())
   <footer>
     <small>
       Made with ❤️ by <a href="https://github.com/mayronH">mayronH</a>
-      {{ currentYear }}</small
-    >
+      {{ currentYear }}
+    </small>
   </footer>
 </template>
 

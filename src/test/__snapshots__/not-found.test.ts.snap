@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`not found view 1`] = `
+"<main class=\\"content\\" data-v-ac76ae68=\\"\\">
+  <h1 data-v-ac76ae68=\\"\\">404</h1>
+  <h2 data-v-ac76ae68=\\"\\">Page not Found</h2>
+</main>"
+`;

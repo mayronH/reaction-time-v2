@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`mount ReactionTest 1`] = `
+"<div class=\\"tooFast\\" data-v-6334a9d6=\\"\\">
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

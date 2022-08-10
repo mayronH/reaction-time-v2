@@ -88,6 +88,9 @@ test('mount ResultReaction', async () => {
   expect(ResultReaction).toBeTruthy()
 
   const wrapper = mount(ResultReaction, {
+    global: {
+      plugins: [createTestingPinia()],
+    },
     props: {
       score: 200,
     },

@@ -31,3 +31,11 @@ exports[`mount ChartLine 1`] = `"<div class=\\"\\"><canvas id=\\"line-chart\\" w
 exports[`mount FooterComponent 1`] = `"<footer data-v-7490b180=\\"\\"><small data-v-7490b180=\\"\\"> Made with ❤️ by <a href=\\"https://github.com/mayronH\\" data-v-7490b180=\\"\\">mayronH</a> 2022</small></footer>"`;
 
 exports[`mount LoadingComponent 1`] = `"<div class=\\"loading\\" data-v-9770a80b=\\"\\"><span data-v-9770a80b=\\"\\"></span></div>"`;
+
+exports[`mount ResultReaction 1`] = `
+"<div class=\\"loading\\" data-v-9770a80b=\\"\\" data-v-c6fc84cd=\\"\\" style=\\"display: none;\\"><span data-v-9770a80b=\\"\\"></span></div>
+<div class=\\"result\\" data-v-c6fc84cd=\\"\\">
+  <h2 data-v-c6fc84cd=\\"\\">Reaction time:</h2>
+  <p class=\\"score\\" data-v-c6fc84cd=\\"\\">200 ms</p>
+</div>"
+`;

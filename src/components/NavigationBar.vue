@@ -29,7 +29,7 @@ onMounted(() => {
     <nav class="header">
       <div class="nav-wrapper">
         <div class="logo">
-          <router-link to="/">
+          <router-link to="/" aria-label="link to home">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6"
@@ -88,6 +88,8 @@ onMounted(() => {
             <button
               role="switch"
               class="theme-switch"
+              aria-label="toggle dark/light theme"
+              aria-checked="mixed"
               @click="themeStore.toggleTheme()"
             >
               <svg

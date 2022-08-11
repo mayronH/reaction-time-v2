@@ -36,45 +36,45 @@ test('mount FooterComponent', async () => {
   expect(wrapper.html()).toMatchSnapshot()
 })
 
-test('mount ChartBar', async () => {
-  expect(ChartBar).toBeTruthy()
+// test('mount ChartBar', async () => {
+//   expect(ChartBar).toBeTruthy()
 
-  const wrapper = mount(ChartBar, {
-    props: {
-      chartData: {
-        labels: 'Test',
-        datasets: [
-          {
-            label: 'Test ChartBar',
-            data: [1, 2, 3, 4, 5],
-          },
-        ],
-      },
-    },
-  })
+//   const wrapper = mount(ChartBar, {
+//     props: {
+//       chartData: {
+//         labels: 'Test',
+//         datasets: [
+//           {
+//             label: 'Test ChartBar',
+//             data: [1, 2, 3, 4, 5],
+//           },
+//         ],
+//       },
+//     },
+//   })
 
-  expect(wrapper.html()).toMatchSnapshot()
-})
+//   expect(wrapper.html()).toMatchSnapshot()
+// })
 
-test('mount ChartLine', async () => {
-  expect(ChartLine).toBeTruthy()
+// test('mount ChartLine', async () => {
+//   expect(ChartLine).toBeTruthy()
 
-  const wrapper = mount(ChartLine, {
-    props: {
-      chartData: {
-        labels: 'Test',
-        datasets: [
-          {
-            label: 'Test ChartLine',
-            data: [1, 2, 3, 4, 5],
-          },
-        ],
-      },
-    },
-  })
+//   const wrapper = mount(ChartLine, {
+//     props: {
+//       chartData: {
+//         labels: 'Test',
+//         datasets: [
+//           {
+//             label: 'Test ChartLine',
+//             data: [1, 2, 3, 4, 5],
+//           },
+//         ],
+//       },
+//     },
+//   })
 
-  expect(wrapper.html()).toMatchSnapshot()
-})
+//   expect(wrapper.html()).toMatchSnapshot()
+// })
 
 test('mount LoadingComponent', async () => {
   expect(LoadingComponent).toBeTruthy()

@@ -83,8 +83,6 @@ p {
   display: grid;
   place-items: center;
 
-  margin-block: var(--small-size-fluid);
-
   border: 2px dashed var(--bg-lighter);
   border-radius: var(--border-radius);
 }

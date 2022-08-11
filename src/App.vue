@@ -41,4 +41,10 @@ main.content {
 
   box-shadow: var(--box-shadow);
 }
+
+@media (min-width: 768px) {
+  main.content {
+    margin-block: 0;
+  }
+}
 </style>

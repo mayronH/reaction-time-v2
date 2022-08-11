@@ -159,7 +159,7 @@ onMounted(() => {
 </template>
 <style scoped>
 .header {
-  padding: 12px 25px;
+  padding: 0.8rem 1.25rem;
 
   background-color: var(--bg-medium);
 
@@ -245,6 +245,8 @@ onMounted(() => {
   justify-content: center;
 
   padding: 0.8rem;
+  margin: auto;
+
   background-color: var(--bg-lighter);
 
   color: var(--text);
@@ -260,6 +262,9 @@ onMounted(() => {
 }
 
 @media (min-width: 768px) {
+  .header {
+    padding: 0.8rem 1rem;
+  }
   .nav-wrapper {
     justify-content: space-between;
   }

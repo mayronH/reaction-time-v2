@@ -19,7 +19,7 @@ specifiers:
   typescript: ^4.7.4
   uuid: ^8.3.2
   vite: ^3.0.5
-  vite-plugin-eslint: ^1.7.0
+  vite-plugin-eslint: ^1.8.0
   vitest: ^0.21.1
   vue: ^3.2.37
   vue-chartjs: ^4.1.1
@@ -50,7 +50,7 @@ devDependencies:
   postcss: 8.4.16
   typescript: 4.7.4
   vite: 3.0.5
-  vite-plugin-eslint: 1.7.0_eslint@8.21.0+vite@3.0.5
+  vite-plugin-eslint: 1.8.0_eslint@8.21.0+vite@3.0.5
   vitest: 0.21.1_c8@7.12.0+jsdom@20.0.0
   vue-tsc: 0.38.9_typescript@4.7.4
 
@@ -2586,6 +2586,14 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /rollup/2.77.3:
+    resolution: {integrity: sha512-/qxNTG7FbmefJWoeeYJFbHehJ2HNWnjkAFRKzWN/45eNBBF/r8lo992CwcJXEzyVxs5FmfId+vTSTQDb+bxA+g==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
@@ -2863,8 +2871,8 @@ packages:
       convert-source-map: 1.8.0
     dev: true
 
-  /vite-plugin-eslint/1.7.0_eslint@8.21.0+vite@3.0.5:
-    resolution: {integrity: sha512-Kz2HwBeAArmsE0QmWSm+e7CaEQrfMkEZpFw4hngoy6JmERjw7WUH8HLbG1OkreOKX4iIUReOss9N1Mkw4wEk8g==}
+  /vite-plugin-eslint/1.8.0_eslint@8.21.0+vite@3.0.5:
+    resolution: {integrity: sha512-l6OthdeaSfgDzf1qCkRZfjyQTelqiQefvpfJE9Mikde3CHAjJz5z3oR1mqj4RiOKybitAyYyK3I0AiPTjvEd5A==}
     peerDependencies:
       eslint: '>=7'
       vite: '>=2'
@@ -2872,7 +2880,7 @@ packages:
       '@rollup/pluginutils': 4.2.1
       '@types/eslint': 8.4.5
       eslint: 8.21.0
-      rollup: 2.77.2
+      rollup: 2.77.3
       vite: 3.0.5
     dev: true
 

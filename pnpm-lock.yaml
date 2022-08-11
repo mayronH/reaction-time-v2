@@ -14,7 +14,7 @@ specifiers:
   eslint-plugin-vue: ^9.3.0
   firebase: ^9.9.2
   jsdom: ^20.0.0
-  pinia: ^2.0.17
+  pinia: ^2.0.18
   postcss: ^8.4.16
   typescript: ^4.7.4
   uuid: ^8.3.2
@@ -29,14 +29,14 @@ specifiers:
 dependencies:
   chart.js: 3.9.1
   firebase: 9.9.2
-  pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
+  pinia: 2.0.18_j6bzmzd4ujpabbp5objtwxyjp4
   uuid: 8.3.2
   vue: 3.2.37
   vue-chartjs: 4.1.1_chart.js@3.9.1+vue@3.2.37
   vue-router: 4.1.3_vue@3.2.37
 
 devDependencies:
-  '@pinia/testing': 0.0.13_pinia@2.0.17+vue@3.2.37
+  '@pinia/testing': 0.0.13_pinia@2.0.18+vue@3.2.37
   '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
   '@typescript-eslint/parser': 5.33.0_qugx7qdu5zevzvxaiqyxfiwquq
   '@vitejs/plugin-vue': 3.0.1_vite@3.0.5+vue@3.2.37
@@ -677,12 +677,12 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@pinia/testing/0.0.13_pinia@2.0.17+vue@3.2.37:
+  /@pinia/testing/0.0.13_pinia@2.0.18+vue@3.2.37:
     resolution: {integrity: sha512-OiqJzUzHrBetqYZ0IrT4MCz4WGViVLjWlsC6xhyf6t/PDUR5IxeLK3HJcP4i3y6Pq4+IVLYhu6xfy1PGfY9p5Q==}
     peerDependencies:
       pinia: '>=2.0.17'
     dependencies:
-      pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
+      pinia: 2.0.18_j6bzmzd4ujpabbp5objtwxyjp4
       vue-demi: 0.13.6_vue@3.2.37
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -2424,8 +2424,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pinia/2.0.17_j6bzmzd4ujpabbp5objtwxyjp4:
-    resolution: {integrity: sha512-AtwLwEWQgIjofjgeFT+nxbnK5lT2QwQjaHNEDqpsi2AiCwf/NY78uWTeHUyEhiiJy8+sBmw0ujgQMoQbWiZDfA==}
+  /pinia/2.0.18_j6bzmzd4ujpabbp5objtwxyjp4:
+    resolution: {integrity: sha512-I5MW05UVX6a5Djka136oH3VzYFiZUgeOApBwFjMx6pL91eHtGVlE3adjNUKLgtwGnrxiBRuJ8+4R3LKJKwnyZg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
       typescript: '>=4.4.4'
@@ -2439,7 +2439,7 @@ packages:
       '@vue/devtools-api': 6.2.1
       typescript: 4.7.4
       vue: 3.2.37
-      vue-demi: 0.13.6_vue@3.2.37
+      vue-demi: 0.13.7_vue@3.2.37
 
   /postcss-selector-parser/6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
@@ -2959,6 +2959,21 @@ packages:
 
   /vue-demi/0.13.6_vue@3.2.37:
     resolution: {integrity: sha512-02NYpxgyGE2kKGegRPYlNQSL1UWfA/+JqvzhGCOYjhfbLWXU5QQX0+9pAm/R2sCOPKr5NBxVIab7fvFU0B1RxQ==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.37
+    dev: true
+
+  /vue-demi/0.13.7_vue@3.2.37:
+    resolution: {integrity: sha512-hbhlvpx1gFW3TB5HxJ0mNxyA9Jh5iQt409taOs6zkhpvfJ7YzLs1rsLufJmDsjH5PI1cOyfikY1fE/meyHfU5A==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true

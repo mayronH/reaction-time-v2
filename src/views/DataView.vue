@@ -380,6 +380,9 @@ watch(
 </template>
 
 <style scoped>
+main.content {
+  margin-block: var(--small-size-fluid);
+}
 .indicators {
   display: flex;
   flex-wrap: wrap;

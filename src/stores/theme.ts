@@ -16,9 +16,9 @@ export const useThemeStore = defineStore('theme', {
     },
     setAccentColor() {
       if (this.userTheme === 'light') {
-        this.accentColor = '#2293c7'
+        this.accentColor = '#6befbb'
       } else {
-        this.accentColor = '#e53265'
+        this.accentColor = '#15cb82'
       }
     },
     getTheme() {

@@ -7,15 +7,15 @@
   --dark-bg-medium: #191a28;
   --dark-bg-lighter: #1e2130;
   --dark-text-grey: #979bb0;
-  --dark-accent: #e53265;
+  --dark-accent: #15cb82;
 
   /* Light Mode Colors */
   --light-text: #15181e;
   --light-bg-dark: #ffffff;
-  --light-bg-medium: #f3f5f7;
+  --light-bg-medium: #ebf0f5;
   --light-bg-lighter: #dbe0ec;
   --light-text-grey: #7185a5;
-  --light-accent: #2293c7;
+  --light-accent: #6befbb;
 
   --extra-small-size-fluid: clamp(0.5rem, 1vw, 0.75rem);
   --small-size-fluid: clamp(1rem, 2vw, 1.5rem);

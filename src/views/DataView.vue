@@ -306,7 +306,7 @@ watch(
     </section>
   </main>
 
-  <main v-else-if="userStore.user === null" class="login">
+  <main v-else-if="!userStore.isLoggedIn" class="login">
     <h2>
       Login with github account to save your reaction time and display your data
     </h2>
@@ -336,7 +336,7 @@ watch(
     </button>
   </main>
 
-  <main v-else class="empty">
+  <main v-else-if="reactionStore.reactionsLoaded" class="empty">
     <svg
       width="100px"
       height="100px"

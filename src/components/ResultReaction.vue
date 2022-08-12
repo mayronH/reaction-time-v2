@@ -34,7 +34,7 @@ async function uploadReaction() {
 }
 
 onMounted(async () => {
-  if (userStore.user) {
+  if (userStore.isLoggedIn) {
     await uploadReaction()
   }
 })

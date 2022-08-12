@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import NavigationBar from './components/NavigationBar.vue'
 import FooterComponent from './components/FooterComponent.vue'
+import { useUserStore } from './stores/auth'
+import { onBeforeMount } from 'vue'
+
+const userStore = useUserStore()
+
+onBeforeMount(() => {
+  userStore.autoLogin()
+})
 </script>
 
 <template>

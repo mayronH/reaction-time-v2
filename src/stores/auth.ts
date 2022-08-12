@@ -13,11 +13,13 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     user: null as User | null,
     isLoggedIn: false,
+    didLogout: false,
   }),
 
   actions: {
     setUser(user: User | null) {
       this.user = user
+      localStorage.setItem('user', JSON.stringify(user))
     },
     async loginWithGit() {
       const provider = new GithubAuthProvider()
@@ -46,12 +48,21 @@ export const useUserStore = defineStore('user', {
     async handleLogout() {
       await signOut(getAuth())
       this.setUser(null)
+      localStorage.removeItem('user')
       this.isLoggedIn = false
 
       const reactionStore = useReactionStore()
       reactionStore.emptyReaction()
 
       // router.push('/')
+    },
+    autoLogin() {
+      const user = localStorage.getItem('user')
+
+      if (user) {
+        this.user = JSON.parse(user)
+        this.isLoggedIn = true
+      }
     },
   },
 })

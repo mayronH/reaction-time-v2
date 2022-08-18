@@ -92,10 +92,10 @@ describe('User Store Test', () => {
     expect(userStore.isLoggedIn).toBe(false)
   })
 
-  it('loginWithGit', async () => {
-    await userStore.loginWithGit()
+  // it('loginWithGit', async () => {
+  //   await userStore.loginWithGit()
 
-    expect(userStore.user).toBeNull()
-    expect(userStore.isLoggedIn).toBe(false)
-  })
+  //   expect(userStore.user).toBeNull()
+  //   expect(userStore.isLoggedIn).toBe(false)
+  // })
 })

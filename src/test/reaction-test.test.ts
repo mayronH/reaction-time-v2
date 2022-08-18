@@ -27,11 +27,3 @@ test('handle play again', async () => {
 
   expect(wrapper.text()).toContain('')
 })
-
-// test('handle click on box', async () => {
-//   const wrapper = mount(ReactionTest)
-
-//   await wrapper.find('.box').trigger('click')
-
-//   expect(wrapper.text()).toContain('')
-// })

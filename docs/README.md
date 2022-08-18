@@ -51,5 +51,5 @@ pnpm build
 - [x] Add Graphs
 - [x] Add Authentication with Github
 - [x] Add Light/Dark Theme Switch
-- [ ] Add tests with Vitest
+- [x] Add tests with Vitest
 - [x] PWA

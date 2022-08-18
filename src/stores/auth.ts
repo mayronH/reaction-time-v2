@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', {
           if (token) {
             this.setUser(result.user)
             this.isLoggedIn = true
-            router.push('/')
+            router.go(0)
           }
         })
         .catch((error) => {

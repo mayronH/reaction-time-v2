@@ -1,25 +1,31 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, beforeAll, afterEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 import { useThemeStore } from '../stores/theme'
 
-describe('Theme Store', () => {
+beforeAll(() => {
+  setActivePinia(createPinia())
+})
+
+describe('Theme Store test', () => {
+  let themeStore: ReturnType<typeof useThemeStore>
+
   beforeEach(() => {
-    setActivePinia(createPinia())
+    themeStore = useThemeStore()
+  })
+
+  afterEach(() => {
+    themeStore.$reset()
   })
 
   it('change theme', () => {
-    const theme = useThemeStore()
-
-    expect(theme.userTheme).toBe('light')
-    theme.setTheme('dark')
-    expect(theme.userTheme).toBe('dark')
+    expect(themeStore.userTheme).toBe('light')
+    themeStore.setTheme('dark')
+    expect(themeStore.userTheme).toBe('dark')
   })
 
   it('change accent color', () => {
-    const theme = useThemeStore()
-
-    expect(theme.accentColor).toBe('')
-    theme.setTheme('dark')
-    expect(theme.accentColor).toBe('#e53265')
+    expect(themeStore.accentColor).toBe('')
+    themeStore.setTheme('dark')
+    expect(themeStore.accentColor).toBe('#15cb82')
   })
 })

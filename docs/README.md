@@ -53,3 +53,5 @@ pnpm build
 - [x] Add Light/Dark Theme Switch
 - [x] Add tests with Vitest
 - [x] PWA
+- [] Add More Tests and e2e with Cypress
+- [] Daily Push Notification with PWA

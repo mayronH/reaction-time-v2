@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import app from '../firebase/firebaseInit'
+import { onMounted } from 'vue'
 import Loading from './LoadingComponent.vue'
-import { getFirestore, addDoc, collection } from 'firebase/firestore'
-import { v4 as uuidv4 } from 'uuid'
 import { useUserStore } from '../stores/auth'
+import { useReactionStore } from '../stores/reaction'
 
 const props = defineProps({
   score: {
@@ -13,24 +11,11 @@ const props = defineProps({
   },
 })
 
-const loading = ref(false)
 const userStore = useUserStore()
+const reactionStore = useReactionStore()
 
 async function uploadReaction() {
-  loading.value = true
-  const db = getFirestore(app)
-  await addDoc(collection(db, 'reactions'), {
-    id: uuidv4(),
-    score: props.score,
-    dateUnix: new Date(),
-    date: new Date().toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    }),
-    user: userStore.user?.uid,
-  })
-  loading.value = false
+  reactionStore.createReaction(props.score)
 }
 
 onMounted(async () => {
@@ -41,8 +26,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <Loading v-show="loading" />
-  <div v-show="!loading" class="result">
+  <Loading v-show="reactionStore.reactionsLoaded" />
+  <div v-show="!reactionStore.reactionsLoaded" class="result">
     <h2>Reaction time:</h2>
     <p class="score">{{ props.score }} ms</p>
   </div>

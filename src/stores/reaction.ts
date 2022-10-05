@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import app from '../firebase/firebaseInit'
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore'
 import { ReactionData } from '../types'
 import { useUserStore } from './auth'
+import { v4 as uuidv4 } from 'uuid'
 
 export const useReactionStore = defineStore('reaction', {
   state: () => ({
@@ -34,6 +35,26 @@ export const useReactionStore = defineStore('reaction', {
 
       this.reactionsLoaded = true
     },
+    async createReaction(score: number) {
+      this.reactionsLoaded = true
+
+      const db = getFirestore(app)
+      const userStore = useUserStore()
+
+      await addDoc(collection(db, 'reactions'), {
+        id: uuidv4(),
+        score: score,
+        dateUnix: new Date(),
+        date: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+        }),
+        user: userStore.user?.uid,
+      })
+      this.reactionsLoaded = false
+    },
+
     emptyReaction() {
       this.reactionData = []
     },

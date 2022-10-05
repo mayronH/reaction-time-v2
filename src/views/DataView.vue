@@ -111,7 +111,9 @@ function createIndicators() {
       return a.score - b.score
     })[0].score
 
-    averageMonth.value = parseFloat((sumTotalMonth / countMonth).toFixed(2))
+    if (countMonth > 0) {
+      averageMonth.value = parseFloat((sumTotalMonth / countMonth).toFixed(2))
+    }
 
     if (countDay > 0)
       averageToday.value = parseFloat((sumTotalDay / countDay).toFixed(2))

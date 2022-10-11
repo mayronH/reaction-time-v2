@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { getMessaging, getToken } from 'firebase/messaging'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -11,6 +12,21 @@ const firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig)
+
+export const messaging = getMessaging(firebaseApp)
+
+function allowNotifications() {
+  Notification.requestPermission().then((result) => {
+    if (result === 'granted') {
+      getToken(messaging, {
+        vapidKey: import.meta.env.VITE_VAPIDKEY,
+      }).then((token) => {
+        console.log(token)
+      })
+    }
+  })
+}
+allowNotifications()
 
 export const auth = getAuth()
 

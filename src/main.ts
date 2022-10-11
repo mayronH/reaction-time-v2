@@ -8,9 +8,3 @@ import firebaseApp from './firebase/firebaseInit'
 firebaseApp.automaticDataCollectionEnabled
 
 createApp(App).use(createPinia()).use(router).mount('#app')
-
-declare global {
-  interface Window {
-    registration?: any
-  }
-}

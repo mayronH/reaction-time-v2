@@ -4,26 +4,10 @@ import FooterComponent from './components/FooterComponent.vue'
 import { useUserStore } from './stores/auth'
 import { onBeforeMount } from 'vue'
 
-import { onMessage, MessagePayload } from 'firebase/messaging'
-import { messaging } from '../src/firebase/firebaseInit'
-
 const userStore = useUserStore()
 
 onBeforeMount(() => {
   userStore.autoLogin()
-})
-
-onMessage(messaging, (payload: MessagePayload) => {
-  console.log('Message received. ', payload)
-  const notificationOptions = {
-    body: payload.notification?.body,
-    icon: 'favicon.ico',
-  }
-
-  self.registration.showNotification(
-    payload.notification?.title,
-    notificationOptions
-  )
 })
 </script>
 
